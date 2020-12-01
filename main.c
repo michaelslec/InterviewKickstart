@@ -4,6 +4,7 @@
 #include "testing.h"
 
 int main() {
+  srand(time(NULL));
 
   /* rampingNSortTest(createTest(1000, 10000, 10, bubbleSort), 50); */
   rampingNSortTest(createTest(1000, 10000, 13, insertionSort), 50);

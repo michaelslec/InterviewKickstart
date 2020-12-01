@@ -33,7 +33,6 @@ double rampingNSortTest(AlgorithmTest params, int percentage_increase) {
 
 AlgorithmTest createTest(int size, int max, int rounds,
                          void (*algorithm)(int *, int)) {
-  srand(time(NULL));
   AlgorithmTest test;
   test.array_size = size;
   test.array_item_max = max;
