@@ -46,8 +46,17 @@ int *mergeSort(int *array, int size) {
     return array;
 
   int left_size = size / 2, right_size = (size + 1) / 2;
-  int *left = mergeSort(leftSplit(array, size), left_size);
-  int *right = mergeSort(rightSplit(array, size), right_size);
+
+  int *left_ptr = leftSplit(array, size);
+  int *right_ptr = rightSplit(array, size);
+
+  int *left = mergeSort(left_ptr, left_size);
+  if (left_ptr != left)
+    free(left_ptr);
+
+  int *right = mergeSort(right_ptr, right_size);
+  if (right_ptr != right)
+    free(right_ptr);
 
   return merge(left, right, left_size, right_size);
 }
