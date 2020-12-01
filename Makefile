@@ -4,7 +4,7 @@ LIBRARY=nope
 INCPATHS=#../some_other_project/
 LIBPATHS=#../yet_another_project/
 LDFLAGS=-fsanitize=address
-CFLAGS=-c -Wall
+CFLAGS=-c -Wall -g
 CC=gcc
 
 ODIR=obj
