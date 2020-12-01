@@ -4,62 +4,41 @@
 #include "algorithms.h"
 #include "testing.h"
 
-int *rightSplit(int *array, int size) {
-  int offset = size / 2;
-  int *new = malloc(sizeof(int) * (size + 1 / 2));
-  for (int i = 0; i < size + 1 / 2; ++i)
-    new[i] = array[i + offset];
+void merge(int *array, int left, int mid, int right) {
+  int n1 = mid - left + 1;
+  int n2 = right - mid;
 
-  return new;
-}
+  int l_copy[n1], r_copy[n2];
 
-int *leftSplit(int *array, int size) {
-  int *new = malloc(sizeof(int) * (size / 2));
-  for (int i = 0; i < size / 2; ++i)
-    new[i] = array[i];
+  for (int i = 0; i < n1; ++i)
+    l_copy[i] = array[left + i];
 
-  return new;
-}
+  for (int i = 0; i < n2; ++i)
+    r_copy[i] = array[mid + 1 + i];
 
-int *merge(int *left, int *right, int left_size, int right_size) {
-  int *merged_arr = malloc(sizeof(int) * (left_size + right_size));
-  int l_idx = 0, r_idx = 0;
-
-  for (int i = 0; i < left_size + right_size; ++i) {
-    if ((r_idx >= right_size || left[l_idx] < right[r_idx]) &&
-        l_idx < left_size) {
-      merged_arr[i] = left[l_idx];
-      l_idx++;
+  int i = 0, j = 0;
+  for (int k = left; k <= right; ++k) {
+    if ((j >= n2 || l_copy[i] < r_copy[j]) && i < n1) {
+      array[k] = l_copy[i];
+      ++i;
     } else {
-      merged_arr[i] = right[r_idx];
-      r_idx++;
+      array[k] = r_copy[j];
+      ++j;
     }
   }
-
-  free(left);
-  free(right);
-  return merged_arr;
 }
 
-int *mergeSort(int *array, int size) {
-  if (size <= 1)
-    return array;
+void _mergeSort(int *array, int left, int right) {
+  if (left >= right)
+    return;
 
-  int left_size = size / 2, right_size = (size + 1) / 2;
-
-  int *left_ptr = leftSplit(array, size);
-  int *right_ptr = rightSplit(array, size);
-
-  int *left = mergeSort(left_ptr, left_size);
-  if (left_ptr != left)
-    free(left_ptr);
-
-  int *right = mergeSort(right_ptr, right_size);
-  if (right_ptr != right)
-    free(right_ptr);
-
-  return merge(left, right, left_size, right_size);
+  int mid = (left + right - 1) / 2;
+  _mergeSort(array, left, mid);
+  _mergeSort(array, mid + 1, right);
+  merge(array, left, mid, right);
 }
+
+void mergeSort(int *array, int size) { _mergeSort(array, 0, size - 1); }
 
 void swap(int *a, int *b) {
   int tmp = *a;
