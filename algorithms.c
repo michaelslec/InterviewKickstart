@@ -1,5 +1,8 @@
-#include "algorithms.h"
+#include <stdio.h>
 #include <stdlib.h>
+
+#include "algorithms.h"
+#include "testing.h"
 
 int *rightSplit(int *array, int size) {
   int offset = size / 2;
@@ -18,7 +21,36 @@ int *leftSplit(int *array, int size) {
   return new;
 }
 
-/* void mergeSort(int *array, int size) { if () } */
+int *merge(int *left, int *right, int left_size, int right_size) {
+  int *merged_arr = malloc(sizeof(int) * (left_size + right_size));
+  int l_idx = 0, r_idx = 0;
+
+  for (int i = 0; i < left_size + right_size; ++i) {
+    if ((r_idx >= right_size || left[l_idx] < right[r_idx]) &&
+        l_idx < left_size) {
+      merged_arr[i] = left[l_idx];
+      l_idx++;
+    } else {
+      merged_arr[i] = right[r_idx];
+      r_idx++;
+    }
+  }
+
+  free(left);
+  free(right);
+  return merged_arr;
+}
+
+int *mergeSort(int *array, int size) {
+  if (size <= 1)
+    return array;
+
+  int left_size = size / 2, right_size = (size + 1) / 2;
+  int *left = mergeSort(leftSplit(array, size), left_size);
+  int *right = mergeSort(rightSplit(array, size), right_size);
+
+  return merge(left, right, left_size, right_size);
+}
 
 void swap(int *a, int *b) {
   int tmp = *a;
