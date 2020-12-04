@@ -4,6 +4,17 @@
 #include "algorithms.h"
 #include "testing.h"
 
+void quickSort(int* array, int size)
+{
+    _quickSort(array, 0, size - 1);
+}
+
+void _quickSort(int* array, int start, int end)
+{
+    if (start >= end)
+        return;
+}
+
 void merge(int* array, int left, int mid, int right)
 {
     int n1 = mid - left + 1;
