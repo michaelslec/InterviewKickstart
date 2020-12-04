@@ -1,4 +1,5 @@
-typedef struct AlgorithmTest {
+typedef struct AlgorithmTest
+{
   int array_size;
   int array_item_max;
   int rounds;

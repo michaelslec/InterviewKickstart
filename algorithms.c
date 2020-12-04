@@ -4,7 +4,8 @@
 #include "algorithms.h"
 #include "testing.h"
 
-void merge(int *array, int left, int mid, int right) {
+void merge(int *array, int left, int mid, int right)
+{
   int n1 = mid - left + 1;
   int n2 = right - mid;
 
@@ -16,19 +17,27 @@ void merge(int *array, int left, int mid, int right) {
   for (int i = 0; i < n2; ++i)
     r_copy[i] = array[mid + 1 + i];
 
-  int i = 0, j = 0;
-  for (int k = left; k <= right; ++k) {
-    if ((j >= n2 || l_copy[i] < r_copy[j]) && i < n1) {
-      array[k] = l_copy[i];
-      ++i;
-    } else {
-      array[k] = r_copy[j];
-      ++j;
+  int l_idx = 0, r_idx = 0;
+  for (int k = left; k <= right; ++k)
+  {
+    // if the left array is the lower value OR
+    // the right array has been exhausted AND
+    // the left array has NOT been exhausted
+    if ((r_idx >= n2 || l_copy[l_idx] < r_copy[r_idx]) && l_idx < n1)
+    {
+      array[k] = l_copy[l_idx];
+      ++l_idx;
+    }
+    else
+    { // otherwise
+      array[k] = r_copy[r_idx];
+      ++r_idx;
     }
   }
 }
 
-void _mergeSort(int *array, int left, int right) {
+void _mergeSort(int *array, int left, int right)
+{
   if (left >= right)
     return;
 
@@ -40,25 +49,30 @@ void _mergeSort(int *array, int left, int right) {
 
 void mergeSort(int *array, int size) { _mergeSort(array, 0, size - 1); }
 
-void swap(int *a, int *b) {
+void swap(int *a, int *b)
+{
   int tmp = *a;
   *a = *b;
   *b = tmp;
 }
 
-void bubbleSort(int *array, int size) {
+void bubbleSort(int *array, int size)
+{
   for (int i = 0; i < size - 1; ++i)
     for (int j = 0; j < size - i - 1; ++j)
       if (array[j] > array[j + 1])
         swap(&array[j], &array[j + 1]);
 }
 
-void insertionSort(int *array, int size) {
-  for (int i = 1; i < size; ++i) {
+void insertionSort(int *array, int size)
+{
+  for (int i = 1; i < size; ++i)
+  {
     int j = i - 1;
     int tmp = array[i];
 
-    while (j >= 0 && tmp < array[j]) {
+    while (j >= 0 && tmp < array[j])
+    {
       array[j + 1] = array[j];
       j--;
     }
@@ -67,8 +81,10 @@ void insertionSort(int *array, int size) {
   }
 }
 
-void selectionSort(int *array, int size) {
-  for (int i = 0; i < size - 1; ++i) {
+void selectionSort(int *array, int size)
+{
+  for (int i = 0; i < size - 1; ++i)
+  {
     int min_idx = i;
     for (int j = i + 1; j < size; ++j)
       if (array[j] < array[min_idx])

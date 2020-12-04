@@ -4,7 +4,8 @@
 
 #include "testing.h"
 
-double rampingNSortTest(AlgorithmTest params, int percentage_increase) {
+double rampingNSortTest(AlgorithmTest params, int percentage_increase)
+{
   printf("RAMPING N TEST:\n");
 
   int rounds = params.rounds;
@@ -12,7 +13,8 @@ double rampingNSortTest(AlgorithmTest params, int percentage_increase) {
          increase = 1 + (double)percentage_increase / 100.0;
   params.rounds = 1;
 
-  for (int i = 0; i < rounds; ++i) {
+  for (int i = 0; i < rounds; ++i)
+  {
     printf("Round %d: Sorting %d items... ", i + 1, params.array_size);
 
     curr = timeSortAlgorithm(params, 0);
@@ -32,7 +34,8 @@ double rampingNSortTest(AlgorithmTest params, int percentage_increase) {
 }
 
 AlgorithmTest createTest(int size, int max, int rounds,
-                         void (*algorithm)(int *, int)) {
+                         void (*algorithm)(int *, int))
+{
   AlgorithmTest test;
   test.array_size = size;
   test.array_item_max = max;
@@ -42,7 +45,8 @@ AlgorithmTest createTest(int size, int max, int rounds,
   return test;
 }
 
-double timeSortAlgorithm(AlgorithmTest params, int print) {
+double timeSortAlgorithm(AlgorithmTest params, int print)
+{
   int array[params.array_size];
 
   if (print)
@@ -50,7 +54,8 @@ double timeSortAlgorithm(AlgorithmTest params, int print) {
 
   clock_t exec_time;
   int sum = 0;
-  for (int i = 0; i < params.rounds; ++i) {
+  for (int i = 0; i < params.rounds; ++i)
+  {
     randomizeArray(array, params.array_size, params.array_item_max);
     /* printIntArray(array, params.array_size); */
 
@@ -70,14 +75,16 @@ double timeSortAlgorithm(AlgorithmTest params, int print) {
   return (double)sum / (double)params.rounds;
 }
 
-void printIntArray(int *array, int size) {
+void printIntArray(int *array, int size)
+{
   printf("Array: ");
   for (int i = 0; i < size; ++i)
     printf("%d ", array[i]);
   printf("\n");
 }
 
-void randomizeArray(int *array, int size, int max) {
+void randomizeArray(int *array, int size, int max)
+{
   for (int i = 0; i < size; ++i)
     array[i] = rand() % max;
 }

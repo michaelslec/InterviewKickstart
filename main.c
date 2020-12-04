@@ -1,3 +1,4 @@
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -5,23 +6,37 @@
 #include "algorithms.h"
 #include "testing.h"
 
-int main() {
+int main()
+{
   srand(time(NULL));
 
-  /* rampingNSortTest(createTest(1000, 10000, 10, bubbleSort), 50); */
-  rampingNSortTest(createTest(1000, 10000, 13, insertionSort), 50);
+  const int size = 1000000;
+  int array[size];
 
-  double bubble_sort_average =
-      timeSortAlgorithm(createTest(10000, 20000, 10, bubbleSort), 1);
-  double insertion_sort_average =
-      timeSortAlgorithm(createTest(10000, 20000, 10, insertionSort), 1);
-  double selection_sort_average =
-      timeSortAlgorithm(createTest(10000, 20000, 10, selectionSort), 1);
+  clock_t exec_time;
+  for (int i = 0; i < 20; ++i)
+  {
+    randomizeArray(array, size, INT_MAX);
 
-  printf("      bubble      insertion      selection\n");
-  printf("%12.2f %14.2f %14.2f\n", bubble_sort_average / 1000000.0,
-         insertion_sort_average / 1000000.0,
-         selection_sort_average / 1000000.0);
+    exec_time = clock();
+    insertionSort(array, size);
+    exec_time = clock() - exec_time;
+
+    printf("That took %ldμs(%.3fs)\n", exec_time,
+           (double)exec_time / 1000000.0);
+  }
+
+  double merge_sort_average =
+      timeSortAlgorithm(createTest(1000000, 20000, 10, mergeSort), 1);
+  /* double insertion_sort_average = */
+  /*     timeSortAlgorithm(createTest(1100000, 20000, 10, insertionSort), 1); */
+  /* double selection_sort_average = */
+  /*     timeSortAlgorithm(createTest(1100000, 20000, 10, selectionSort), 1); */
+
+  /* printf("      merge      insertion      selection\n"); */
+  /* printf("%11.2f %14.2f %14.2f\n", merge_sort_average / 1000000.0, */
+  /*        insertion_sort_average / 1000000.0, */
+  /*        selection_sort_average / 1000000.0); */
 
   return 0;
 }
