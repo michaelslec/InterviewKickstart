@@ -4,7 +4,7 @@
 #include "algorithms.h"
 #include "testing.h"
 
-void merge(int* array, int left, int mid, int right);
+void merge(int* array, int left, int mid, int right)
 {
     int n1 = mid - left + 1;
     int n2 = right - mid;
