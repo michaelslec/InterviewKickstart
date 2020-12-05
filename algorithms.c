@@ -6,13 +6,26 @@
 
 void quickSort(int* array, int size)
 {
-    _quickSort(array, 0, size - 1);
+    _quickSort(array, 0, size);
 }
 
 void _quickSort(int* array, int start, int end)
 {
     if (start >= end)
         return;
+
+    int pivot = array[start],
+        smaller = start,
+        bigger = start;
+
+    for (bigger = start + 1; bigger < end; ++bigger)
+        if (array[bigger] < pivot)
+            swap(&array[++smaller], &array[bigger]);
+
+    swap(&array[start], &array[smaller]);
+
+    _quickSort(array, start, smaller);
+    _quickSort(array, smaller + 1, bigger);
 }
 
 void merge(int* array, int left, int mid, int right)

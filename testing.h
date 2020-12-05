@@ -1,3 +1,5 @@
+#include <stdbool.h>
+
 typedef struct AlgorithmTest {
     int array_size;
     int array_item_max;
@@ -12,3 +14,4 @@ void printArrayRange(int*, int, int);
 void randomizeArray(int*, int, int);
 double timeSortAlgorithm(AlgorithmTest, int);
 double rampingNSortTest(AlgorithmTest, int);
+bool testCorrectness(int*, int);

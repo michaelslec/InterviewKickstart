@@ -1,8 +1,22 @@
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
 #include "testing.h"
+
+bool testCorrectness(int* array, int size)
+{
+    int prev = array[0];
+    for (int i = 0; i < size; ++i) {
+        if (array[i] < prev)
+            return false;
+
+        prev = array[i];
+    }
+
+    return true;
+}
 
 double rampingNSortTest(AlgorithmTest params, int percentage_increase)
 {
