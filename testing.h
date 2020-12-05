@@ -8,6 +8,7 @@ typedef struct AlgorithmTest {
 AlgorithmTest createTest(int, int, int, void (*algorithm)(int*, int));
 
 void printIntArray(int*, int);
+void printArrayRange(int*, int, int);
 void randomizeArray(int*, int, int);
 double timeSortAlgorithm(AlgorithmTest, int);
 double rampingNSortTest(AlgorithmTest, int);

@@ -73,6 +73,12 @@ double timeSortAlgorithm(AlgorithmTest params, int print)
     return (double)sum / (double)params.rounds;
 }
 
+void printArrayRange(int* array, int begin, int end)
+{
+    for (int i = begin; i <= end; ++i)
+        printf("%d ", array[i]);
+}
+
 void printIntArray(int* array, int size)
 {
     printf("Array: ");
