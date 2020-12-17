@@ -29,6 +29,7 @@ def capital_combos_mutable(problem: str):
 
     def helper(start: int):
         if start == n:
+            print(slate)
             results.append("".join(slate))
             # time.sleep(0.003)
         else:
@@ -39,9 +40,7 @@ def capital_combos_mutable(problem: str):
             else:
                 slate.append(problem[start])
                 helper(start + 1)
-                slate.pop(-1)
-
-                slate.append(problem[start].upper())
+                slate[-1] = slate[-1].upper()
                 helper(start + 1)
                 slate.pop(-1)
 
