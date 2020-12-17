@@ -45,7 +45,7 @@ def capital_combos_mutable(problem: str):
                 slate.pop(-1)
 
     helper(0)
-    print(f"Slate finished with: {slate}")
+    # print(f"Slate finished with: {slate}")
     return results
 
 
