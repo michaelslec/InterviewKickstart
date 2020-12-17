@@ -29,7 +29,7 @@ def capital_combos_mutable(problem: str):
 
     def helper(start: int):
         if start == n:
-            print(slate)
+            # print(slate)
             results.append("".join(slate))
             # time.sleep(0.003)
         else:
@@ -45,7 +45,7 @@ def capital_combos_mutable(problem: str):
                 slate.pop(-1)
 
     helper(0)
-
+    print(f"Slate finished with: {slate}")
     return results
 
 
