@@ -12,7 +12,7 @@ def capital_combos(problem: str):
             results.append(slate)
             # time.sleep(0.003)
         else:
-            if problem[start].isnumeric():
+            if not problem[start].isalpha():
                 helper(start + 1, slate + problem[start])
             else:
                 helper(start + 1, slate + problem[start])
