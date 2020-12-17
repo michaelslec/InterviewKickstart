@@ -36,13 +36,13 @@ def capital_combos_mutable(problem: str):
             if not problem[start].isalpha():
                 slate.append(problem[start])
                 helper(start + 1)
-                slate.pop(-1)
+                slate.pop()
             else:
                 slate.append(problem[start])
                 helper(start + 1)
                 slate[-1] = slate[-1].upper()
                 helper(start + 1)
-                slate.pop(-1)
+                slate.pop()
 
     helper(0)
     # print(f"Slate finished with: {slate}")
