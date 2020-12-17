@@ -7,10 +7,10 @@ def capital_combos(problem: str):
     n: int = len(problem)
 
     def helper(start: int, slate: str):
-        if start >= n:
+        if start == n:
             print(slate)
             results.append(slate)
-            time.sleep(0.003)
+            # time.sleep(0.003)
         else:
             if problem[start].isnumeric():
                 helper(start + 1, slate + problem[start])
@@ -23,4 +23,4 @@ def capital_combos(problem: str):
     return results
 
 
-capital_combos("abcdefghjiklm")
+capital_combos("a1bc")
